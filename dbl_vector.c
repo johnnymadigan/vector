@@ -2,10 +2,13 @@
 #include <stdlib.h>
 #include "dbl_vector.h"
 
-/* macro to return the greater num */
+/* macros to return the MAX/MIN of 2 numbers */
+#define MAX(a, b) {(a > b) ? a : b}
+#define MIN(a, b) {(a < b) ? a : b}
 
+
+/* INITIALISE DEFAULT VALUES TO VECTOR STRUCT */
 void dv_init( dbl_vector_t* vec ) {
-    /* INITIALISE DEFAULT VALUES TO VECTOR STRUCT */
     vec->capacity = DV_INITIAL_CAPACITY;
     vec->size = 0;
     vec->data = malloc(DV_INITIAL_CAPACITY * sizeof(double));
@@ -45,12 +48,8 @@ void dv_ensure_capacity( dbl_vector_t* vec, size_t new_size ) {
     double* old_data = vec->data;
 
     /* check if the new size is larger than the current using macro max() */
-    size_t new_capacity;
-    if (old_capacity * DV_GROWTH_FACTOR < new_size) {
-        new_capacity = new_size;
-    } else {
-        new_capacity = (old_capacity * DV_GROWTH_FACTOR);
-    }
+    size_t new_capacity = MAX(old_capacity * DV_GROWTH_FACTOR, new_size);
+
 
     /* get the size in bytes by multiplying num of items by item type (double) */
     size_t new_mem_size = (new_capacity * sizeof(double));
@@ -85,7 +84,6 @@ void dv_destroy( dbl_vector_t* vec ) {
     vec->size = 0;
     free(vec->data);
     vec->data = NULL;
-    
 }
 
 
@@ -105,7 +103,6 @@ void dv_destroy( dbl_vector_t* vec ) {
  */
 void dv_copy( dbl_vector_t* vec, dbl_vector_t* dest ) {
     // INSERT SOLUTION HERE
-        // INSERT SOLUTION HERE
     if (vec == dest ) {
         puts("Vector #1 and #2 cannot be the same:");
         printf("\t%p\n\t%p\n", vec, dest);
@@ -121,7 +118,6 @@ void dv_copy( dbl_vector_t* vec, dbl_vector_t* dest ) {
     for (i = 0; i < vec->size; i++) {
         dest->data[i] = vec->data[i];
     }
-
 }
 
 /**
@@ -136,7 +132,6 @@ void dv_copy( dbl_vector_t* vec, dbl_vector_t* dest ) {
  */
 void dv_clear( dbl_vector_t* vec ) {
     // INSERT SOLUTION HERE
-        // INSERT SOLUTION HERE
     int i;
     //puts("before clear");
     for (i = 0; i < vec->size; i++) {
@@ -147,7 +142,6 @@ void dv_clear( dbl_vector_t* vec ) {
     for (i = 0; i < vec->size; i++) {
         printf("%f\n", vec->data[i]);
     }
-
 }
 
 
@@ -194,19 +188,13 @@ void dv_push( dbl_vector_t* vec, double new_item ) {
     dv_ensure_capacity(vec, old_size + 1);
     vec->size = old_size + 1;
 
-    
-
     /* add the old data back into the newly sized array */
     for (i = 0; i < old_size; ++i) {
         vec->data[i] = old_data[i];
     }
 
-    
-
     /* append the item */
     vec->data[old_size] = new_item;
-
-    
 }
 
 /**
@@ -250,7 +238,6 @@ void dv_pop( dbl_vector_t* vec ) {
     } else {
         vec->size = 0;
     }
-
 }
 
 /**
@@ -277,6 +264,27 @@ void dv_pop( dbl_vector_t* vec ) {
  */
 double dv_last( dbl_vector_t* vec ) {
     double result = NAN;
+    // INSERT SOLUTION HERE
+    /*
+    size_t old_size = vec->size;
+    int i;
+    // dupe over, don't assign pointer to pointer
+    double old_data[vec->size]; // old data locally, no pointer needed
+    for (i = 0; i < vec->size; i++) {
+        old_data[i] = vec->data[i];
+    }
+    size_t old_capacity = vec->capacity;
+
+    // boilerplate?
+    vec->size = old_size;
+    vec->capacity = old_capacity;
+
+    for (i = 0; i < vec->size; i++) {
+        vec->data[i] = old_data[i];
+    }
+    */
+
+    // maybe this is all we need here
     if (vec->size > 0) {
         result = vec->data[vec->size - 1];
     }
@@ -303,7 +311,7 @@ double dv_last( dbl_vector_t* vec ) {
  * \param new_item The value to insert.
  */
 void dv_insert_at( dbl_vector_t* vec, size_t pos, double new_item ) {
-        // INSERT SOLUTION HERE
+    // INSERT SOLUTION HERE
     size_t old_size = vec->size;
     int i;
     // dupe over, don't assign pointer to pointer
@@ -316,12 +324,8 @@ void dv_insert_at( dbl_vector_t* vec, size_t pos, double new_item ) {
     }
 
     // boilerplate?
-    size_t loc;
-    if (pos < old_size) {
-        loc = pos;
-    } else {
-        loc = old_size;
-    }
+    size_t loc = MIN(pos, old_size);
+
 
     vec->size = old_size + 1;
     dv_ensure_capacity(vec, old_size + 1);
@@ -349,9 +353,6 @@ void dv_insert_at( dbl_vector_t* vec, size_t pos, double new_item ) {
 
     // add the new item
     vec->data[loc] = new_item;
-
-    
-
 
     
     
@@ -386,7 +387,6 @@ void dv_insert_at( dbl_vector_t* vec, size_t pos, double new_item ) {
  */
 void dv_remove_at( dbl_vector_t* vec, size_t pos ) {
     // INSERT SOLUTION HERE
-        // INSERT SOLUTION HERE
     int i;
     size_t old_size = vec->size;
 
@@ -435,6 +435,7 @@ void dv_foreach( dbl_vector_t* vec, void (*callback)(double, void*), void* info 
     for (i = 0; i < vec->size; i++) {
         callback(vec->data[i], info);
     }
+
 
 
 }
