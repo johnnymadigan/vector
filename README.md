@@ -1,8 +1,6 @@
 # Vector
 
-'Vector' is my implementation of an Abstract Data Type in the *C* lang. Resembles a Lists in *C#* and *Python*.
-
-Supporting operations such as resizing, push, pop, insert/remove at index, copying, foreach, clearing, and destroying.
+'Vector' is my implementation of an Abstract Data Type in the *C* lang. Resembles Lists like in *C#* and *Python*. Supporting operations such as resizing, push, pop, insert/remove at index, copying, foreach, clearing, and destroying.
 
 Given an API (dbl_vector.h), the challenge is to implement the source code which satisfies all operations mentioned above. These have been implemented as pure functions.
 
