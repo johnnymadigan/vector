@@ -1,6 +1,6 @@
 # Vector
 
-My implementation of an Abstract Data Type. Defined as *Vector*, this ADT resembles a *List* in C# and Python.
+'Vector' is my implementation of an Abstract Data Type in the *C* lang. Resembles a Lists in *C#* and *Python*.
 
 Supporting operations such as resizing, push, pop, insert/remove at index, copying, foreach, clearing, and destroying.
 
