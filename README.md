@@ -6,6 +6,13 @@ Supporting operations such as resizing, push, pop, insert/remove at index, copyi
 
 Given an API (dbl_vector.h), the challenge is to implement the source code which satisfies all operations mentioned above. These have been implemented as pure functions.
 
+# Run
+- Run using a LINUX VM for safety
+- Ensure source.c and header.h files are in the same folder
+- Compile using: `gcc -Wall -D MOCK_MEMORY=1 -o app dbl_vector.c dbl_vector_driver.c -lm -lpthread -lrt`
+- Shorter compile line: `gcc -Wall -o app dbl_vector.c dbl_vector_driver.c`
+- Run using: `./app`
+
 # Expected output from the test suit
 ```
 Push 3.35:
