@@ -1,3 +1,7 @@
+![year](https://img.shields.io/badge/Year-2021-lightgrey?style=plastic)
+![author](https://img.shields.io/badge/Author-Johnny%20Madigan-yellow?style=plastic)
+![C](https://img.shields.io/badge/C%20lang-lightgrey?style=plastic&logo=C)
+
 # Vector
 
 'Vector' is my implementation of an Abstract Data Type in the *C* lang. Resembles Lists like in *C#* and *Python*. Supporting operations such as resizing, push, pop, insert/remove at index, copying, foreach, clearing, and destroying.
